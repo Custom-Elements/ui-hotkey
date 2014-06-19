@@ -7,8 +7,9 @@ A Polymer element for specifying hotkeys.
     <ui-hotkey key="control+s"></ui-hotkey>
 
 Its single attribute, `key`, specifies the key combination that this
-element listens for. When this a `keyup` event matching this key
-combination is pressed, this element will emit a `click` event.
+element listens for. This element will emit a `click` event when a
+`keyup` event matching this key happens in the document.
 
-Emitting a `click` event makes this a natural element to stick inside
-of a button element of some kind (e.g. in a toolbar).
+Emitting a `click` event makes this a natural to stick inside
+of a button element of some kind to provide hotkey access for that
+button (e.g. in a toolbar).
