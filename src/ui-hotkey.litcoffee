@@ -19,6 +19,8 @@ Keys are always in the following order, with each key being optional:
 If you write `shift+control+/` then the click event will never fire as this
 should have been specified as `control+shift+/`.
 
+## Helper Bits
+
 First, let's include all our predefined key codes.
 
     keyCodes = require('./key-codes')
@@ -46,6 +48,22 @@ Last but not least, the Polymer definition begins:
 
     Polymer 'ui-hotkey',
 
+## Attributes and Change Handlers
+
+### key
+
+Formatted as follows:
+
+```
+[control][+][alt][+][shift]+[key]
+```
+
+A key value of `control+s` is valid. A value of `shift+control+s`
+is not; the ordering matters.
+
+Take a look at [key-codes.js]() for the correct way to use "special" keys such
+as `tab`, `backspace`, and `printscreen`.
+
 ##Events
 
   * **click** This element fires a bog-standard click event when it hears the
@@ -60,9 +78,14 @@ Last but not least, the Polymer definition begins:
 
 ##Polymer Lifecycle
 
+Listen for `keyup` for the key we care about.
+
       attached: ->
         document.addEventListener 'keyup', (e) =>
           @myListener e
+
+
+Stop listening when this element is removed.
 
       detached: ->
         document.removeEventListener 'keyup', (e) =>
